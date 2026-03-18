@@ -1,7 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car, Cpu, Key, Gauge, Zap, CircuitBoard, ArrowRight, CheckCircle, Download, Shield, Monitor, Settings, Wrench, Database } from "lucide-react";
+import {
+  Car,
+  Cpu,
+  Key,
+  Gauge,
+  Zap,
+  CircuitBoard,
+  ArrowRight,
+  CheckCircle,
+  Download,
+  Shield,
+  Monitor,
+  Settings,
+  Wrench,
+  Database,
+} from "lucide-react";
+import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const services = [
@@ -22,78 +38,104 @@ const stats = [
 
 const softwareTools = [
   {
-    icon: Monitor,
-    title: "XENTRY Diagnostics",
-    desc: "Latest Mercedes-Benz XENTRY diagnostic software with full system access for cars and commercial vehicles.",
+    icon: Database,
+    title: "Alldata",
+    desc: "Online subscription for all vehicle manufacturers with repair manuals, technical bulletins, component locations, and full wiring diagrams.",
   },
   {
-    icon: Database,
-    title: "DAS Standalone",
-    desc: "Diagnose-Assistenz-System with offline mode support, special functions, and developer capabilities.",
+    icon: Monitor,
+    title: "Haynes Pro",
+    desc: "Repair software manual covering multiple vehicle brands with detailed service procedures and diagnostics.",
   },
   {
     icon: Download,
-    title: "Software Updates & Patchers",
-    desc: "All-in-one patchers, simple activation tools, and quarterly software updates for seamless operation.",
+    title: "Mitchell OnDemand",
+    desc: "Professional automotive repair system with labor data, wiring diagrams, and OEM service information.",
   },
   {
     icon: Settings,
-    title: "ECU Flash & Calibration",
-    desc: "Flash programming data, FDOK corrections, SCR/AdBlue solutions, and emissions calibration files.",
+    title: "Techstream (Toyota/Lexus)",
+    desc: "Dealer-level diagnostic and repair software for Toyota and Lexus vehicles with full system access.",
   },
   {
-    icon: Key,
-    title: "Offline Key Programming",
-    desc: "Transponder key teach-in, SAM assignment, and immobilizer solutions for Smart and Mercedes platforms.",
+    icon: CircuitBoard,
+    title: "ElsaWin (VAG Group)",
+    desc: "Official repair software for Volkswagen, Audi, Skoda, Seat, and Porsche with factory manuals and wiring diagrams.",
+  },
+  {
+    icon: Cpu,
+    title: "BMW Diagnostics System",
+    desc: "Custom-built PC-based diagnostic tool for BMW with advanced coding, programming, and fault analysis.",
   },
   {
     icon: Wrench,
-    title: "Special Functions & Developer Mode",
-    desc: "Unlocked control unit adaptations, VMAX settings, transmission routines, and advanced developer tools.",
+    title: "Vediamo / DTS Monaco",
+    desc: "Advanced engineering tools for Mercedes-Benz ECU coding, parameter tuning, and developer diagnostics.",
   },
 ];
 
 const whyChooseUs = [
-  { icon: Shield, title: "Original Software", desc: "Direct from manufacturer servers — always genuine, always up to date." },
-  { icon: Download, title: "Latest Versions", desc: "Quarterly updates with the newest diagnostic data and features." },
-  { icon: Wrench, title: "Developer Tools", desc: "Advanced functions, special passwords, and unlocked adaptation menus." },
-  { icon: Monitor, title: "Full System Coverage", desc: "From legacy DAS to modern XENTRY — every generation supported." },
+  { icon: Shield, title: "Original Software", desc: "Always genuine and up to date." },
+  { icon: Download, title: "Latest Versions", desc: "Quarterly updates and new features." },
+  { icon: Wrench, title: "Developer Tools", desc: "Advanced functions unlocked." },
+  { icon: Monitor, title: "Full Coverage", desc: "Supports all vehicle generations." },
 ];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 },
+};
 
 const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="Automotive diagnostics" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-primary/85" />
+          <img
+            src={heroBg}
+            loading="lazy"
+            alt="Automotive diagnostics"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/70 backdrop-brightness-75" />
         </div>
-        <div className="relative container py-24 md:py-36 text-primary-foreground">
-          <div className="max-w-2xl animate-fade-in">
-            <p className="text-accent font-display font-semibold text-sm uppercase tracking-widest mb-4">
+
+        <div className="relative container py-24 md:py-36 text-primary-foreground px-4">
+          <div className="max-w-2xl">
+            <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-4">
               Professional Automobile Diagnostics
             </p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold leading-tight mb-6">
+
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               Precision Diagnostics for the Modern Vehicle
             </h1>
-            <p className="text-lg text-primary-foreground/80 mb-8 font-body max-w-lg">
-              Expert vehicle coding, programming, and electronic system repair. We speak your car's language.
+
+            <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg">
+              Expert vehicle coding, programming, and electronic system repair.
             </p>
+
             <div className="flex flex-wrap gap-3">
-              <Button variant="hero" size="lg" onClick={() => navigate("/register")}>
+              <Button
+                variant="hero"
+                size="lg"
+                className="hover:scale-105 transition-transform"
+                onClick={() => navigate("/register")}
+              >
                 Get Started <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
+
               <Button
-  variant="outline"
-  size="lg"
-  className="bg-primary text-white border-primary hover:bg-primary/90 hover:text-white"
-  onClick={() => navigate("/services")}
->
-  View Services
-</Button>
+                variant="outline"
+                size="lg"
+                className="bg-primary text-white border-primary hover:bg-primary/90 hover:text-white hover:scale-105 transition-transform"
+                onClick={() => navigate("/services")}
+              >
+                View Services
+              </Button>
             </div>
           </div>
         </div>
@@ -101,32 +143,33 @@ const Index = () => {
 
       {/* Stats */}
       <section className="border-b bg-card">
-        <div className="container grid grid-cols-2 md:grid-cols-4 divide-x">
-          {stats.map((stat) => (
-            <div key={stat.label} className="py-8 text-center">
-              <div className="text-2xl md:text-3xl font-display font-bold text-accent">{stat.value}</div>
+        <div className="container grid grid-cols-2 md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div key={stat.label} className={`py-8 text-center ${i !== stats.length - 1 ? "md:border-r" : ""}`}>
+              <div className="text-2xl md:text-3xl font-bold text-accent">{stat.value}</div>
               <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="container py-20">
+      {/* Services */}
+      <motion.section {...fadeUp} className="container py-16 md:py-20 px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-display font-bold mb-3">Our Services</h2>
+          <h2 className="text-3xl font-bold mb-3">Our Services</h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Comprehensive diagnostics and programming solutions for all vehicle makes and models.
+            Comprehensive diagnostics for all vehicles.
           </p>
         </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((svc) => (
-            <Card key={svc.title} className="group hover:shadow-md transition-shadow">
+            <Card key={svc.title} className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <CardHeader>
-                <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center mb-2 group-hover:bg-accent/20 transition-colors">
+                <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center mb-2 group-hover:bg-accent/20">
                   <svc.icon className="h-5 w-5 text-accent" />
                 </div>
-                <CardTitle className="text-lg">{svc.title}</CardTitle>
+                <CardTitle>{svc.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">{svc.desc}</p>
@@ -134,86 +177,83 @@ const Index = () => {
             </Card>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      {/* Diagnostic Software & Solutions */}
+      {/* Software Section */}
       <section className="bg-primary text-primary-foreground">
-        <div className="container py-20">
+        <div className="container py-16 md:py-20 px-4">
           <div className="text-center mb-12">
-            <p className="text-accent font-display font-semibold text-sm uppercase tracking-widest mb-3">
-              Software & Solutions
+            <p className="text-accent text-sm uppercase tracking-widest mb-3">
+              Trusted OEM & Dealer Tools
             </p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               OEM-Level Diagnostic Software
             </h2>
+
             <p className="text-primary-foreground/70 max-w-2xl mx-auto">
-              We provide access to the latest original diagnostic software, patchers, and developer tools directly from manufacturer servers — keeping your workshop equipped with cutting-edge technology.
+              We provide industry-leading automotive diagnostic software including Alldata, Mitchell, Techstream, ElsaWin, and advanced engineering tools like Vediamo and DTS Monaco — giving you full access to repair manuals, wiring diagrams, ECU programming, and dealer-level diagnostics.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {softwareTools.map((item) => (
-              <Card key={item.title} className="bg-primary-foreground/5 border-primary-foreground/10 text-primary-foreground group hover:bg-primary-foreground/10 transition-colors">
+              <Card
+                key={item.title}
+                className="bg-primary-foreground/5 border-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/10 transition"
+              >
                 <CardHeader>
-                  <div className="h-10 w-10 rounded-lg bg-accent/20 flex items-center justify-center mb-2 group-hover:bg-accent/30 transition-colors">
+                  <div className="h-10 w-10 bg-accent/20 rounded-lg flex items-center justify-center mb-2">
                     <item.icon className="h-5 w-5 text-accent" />
                   </div>
-                  <CardTitle className="text-lg text-primary-foreground">{item.title}</CardTitle>
+                  <CardTitle>{item.title}</CardTitle>
                 </CardHeader>
+
                 <CardContent>
                   <p className="text-sm text-primary-foreground/70">{item.desc}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <p className="text-primary-foreground/60 text-sm mb-4">
-              Supporting all Mercedes-Benz platforms: Cars, Trucks, Smart, Sprinter & Commercial Vehicles
-            </p>
-            <Button variant="hero" size="lg" onClick={() => navigate("/services")}>
-              Explore All Solutions <ArrowRight className="ml-1 h-4 w-4" />
-            </Button>
-          </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="container py-20">
+      <motion.section {...fadeUp} className="container py-16 md:py-20 px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-display font-bold mb-3">Why Choose KingsCarNotAutomobile?</h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
-            We combine dealer-level expertise with independent workshop flexibility.
-          </p>
+          <h2 className="text-3xl font-bold mb-3">Why Choose KingsCar</h2>
         </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {whyChooseUs.map((item) => (
             <div key={item.title} className="text-center">
               <div className="h-14 w-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                 <item.icon className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="font-display font-semibold mb-2">{item.title}</h3>
+              <h3 className="font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA */}
       <section className="bg-primary text-primary-foreground">
-        <div className="container py-16 text-center">
-          <h2 className="text-3xl font-display font-bold mb-4">Ready to get started?</h2>
+        <div className="container py-16 text-center px-4">
+          <h2 className="text-3xl font-bold mb-4">
+            Diagnose Smarter. Drive Safer.
+          </h2>
+
           <p className="text-primary-foreground/70 mb-8 max-w-md mx-auto">
-            Create your account, register your vehicle, and subscribe to proactive maintenance alerts.
+            Prevent breakdowns before they happen.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["Free diagnostic report", "Maintenance reminders", "Priority support"].map((item) => (
-              <span key={item} className="inline-flex items-center gap-1.5 text-sm text-primary-foreground/80">
-                <CheckCircle className="h-4 w-4 text-accent" /> {item}
-              </span>
-            ))}
-          </div>
-          <Button variant="hero" size="lg" className="mt-8" onClick={() => navigate("/register")}>
+
+          <Button
+            variant="hero"
+            size="lg"
+            className="hover:scale-105 transition-transform"
+            onClick={() => navigate("/register")}
+          >
             Create Free Account
           </Button>
         </div>
@@ -221,12 +261,13 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t bg-card">
-        <div className="container py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2 font-display font-semibold text-foreground">
+        <div className="container py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground px-4">
+          <div className="flex items-center gap-2 font-semibold text-foreground">
             <Car className="h-4 w-4 text-accent" />
-            KingsCarNotAutomobile
+            KingsCar
           </div>
-          <p>© {new Date().getFullYear()} KingsCarNotAutomobile. All rights reserved.</p>
+
+          <p>© {new Date().getFullYear()} KingsCar. All rights reserved.</p>
         </div>
       </footer>
     </div>
