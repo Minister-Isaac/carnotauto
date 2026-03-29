@@ -9,7 +9,6 @@ import {
   Zap,
   CircuitBoard,
   ArrowRight,
-  CheckCircle,
   Download,
   Shield,
   Monitor,
@@ -22,8 +21,6 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 
-import heroBg from "@/assets/hero-bg.jpg";
-
 /* VEHICLE IMAGES */
 import car1 from "@/assets/vehicles/car1.jpg";
 import car2 from "@/assets/vehicles/car2.jpg";
@@ -34,7 +31,7 @@ import car6 from "@/assets/vehicles/car6.jpg";
 import car7 from "@/assets/vehicles/car7.jpg";
 import car8 from "@/assets/vehicles/car8.jpg";
 
-/* VEHICLES SLIDER */
+/* VEHICLES */
 const vehicles = [
   { name: "Mercedes-Benz Diagnostics", img: car1 },
   { name: "BMW Programming", img: car2 },
@@ -62,15 +59,6 @@ const stats = [
   { value: "24/7", label: "Remote Support" },
 ];
 
-const softwareTools = [
-  { icon: Monitor, title: "XENTRY Diagnostics", desc: "Latest Mercedes-Benz XENTRY diagnostic software with full system access for cars and commercial vehicles." },
-  { icon: Database, title: "DAS Standalone", desc: "Diagnose-Assistenz-System with offline mode support, special functions, and developer capabilities." },
-  { icon: Download, title: "Alldata", desc: "Online subscription for all vehicle manufacturers — repair software manual with technical bulletins." },
-  { icon: Wrench, title: "Hyence", desc: "Comprehensive repair software manual covering all vehicle makes and models." },
-  { icon: Settings, title: "Mitchell & Techstream", desc: "Mitchell pro repair data plus Techstream for Toyota/Lexus diagnostics." },
-  { icon: CircuitBoard, title: "ElsaWin", desc: "Official workshop software for Volkswagen, Audi, Škoda, SEAT, and Porsche." },
-];
-
 const whyChooseUs = [
   { icon: Shield, title: "Original Software", desc: "Direct from manufacturer servers — always genuine." },
   { icon: Download, title: "Latest Versions", desc: "Quarterly updates with newest diagnostic data." },
@@ -80,6 +68,7 @@ const whyChooseUs = [
 
 const Index = () => {
   const navigate = useNavigate();
+
   const autoplayPlugin = useRef(
     Autoplay({ delay: 2500, stopOnInteraction: false })
   );
@@ -87,13 +76,33 @@ const Index = () => {
   return (
     <div>
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden h-[650px]">
+
+        {/* SLIDING VEHICLES */}
         <div className="absolute inset-0">
-          <img src={heroBg} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-primary/85" />
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[autoplayPlugin.current]}
+            className="h-full"
+          >
+            <CarouselContent>
+              {vehicles.map((vehicle) => (
+                <CarouselItem key={vehicle.name}>
+                  <img
+                    src={vehicle.img}
+                    className="w-full h-[650px] object-cover"
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* DARK OVERLAY */}
+          <div className="absolute inset-0 bg-black/70" />
         </div>
 
-        <div className="relative container py-24 md:py-36 text-primary-foreground">
+        {/* HERO CONTENT */}
+        <div className="relative container h-full flex items-center text-white">
           <div className="max-w-2xl">
             <p className="text-accent font-semibold text-sm uppercase tracking-widest mb-4">
               Professional Automobile Diagnostics
@@ -103,7 +112,7 @@ const Index = () => {
               Precision Diagnostics for the Modern Vehicle
             </h1>
 
-            <p className="text-lg text-primary-foreground/80 mb-8">
+            <p className="text-lg text-white/80 mb-8">
               Expert vehicle coding, programming, and electronic system repair.
             </p>
 
@@ -122,44 +131,6 @@ const Index = () => {
               </Button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* VEHICLE SLIDER */}
-      <section className="bg-card border-b py-10">
-        <div className="container">
-          <p className="text-center text-sm text-muted-foreground mb-6 uppercase tracking-widest">
-            Vehicles We Support
-          </p>
-
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            plugins={[autoplayPlugin.current]}
-          >
-            <CarouselContent>
-              {vehicles.map((vehicle) => (
-                <CarouselItem
-                  key={vehicle.name}
-                  className="basis-[85%] md:basis-1/2 lg:basis-1/3"
-                >
-                  <div className="relative overflow-hidden rounded-xl group">
-                    <img
-                      src={vehicle.img}
-                      className="h-[240px] w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-
-                    <div className="absolute inset-0 bg-black/40" />
-
-                    <div className="absolute bottom-0 left-0 p-4 text-white">
-                      <h3 className="font-semibold text-lg">
-                        {vehicle.name}
-                      </h3>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
         </div>
       </section>
 
@@ -238,10 +209,7 @@ const Index = () => {
             Ready to get started?
           </h2>
 
-          <Button
-            size="lg"
-            onClick={() => navigate("/register")}
-          >
+          <Button size="lg" onClick={() => navigate("/register")}>
             Create Free Account
           </Button>
         </div>
